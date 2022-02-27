@@ -17,6 +17,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
 <script>  
     var socket = io("http://localhost:3000");
+    socket.on("disconnect", ()=>{
+        console.log("Desconectado!");
+    })
     socket.emit("boasvindas",{nome: "Victor"});
 
     socket.on("resultado", (data)=>{

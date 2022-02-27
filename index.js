@@ -5,14 +5,18 @@ var io = require("socket.io")(http);
 
 
 io.on("connection", (socket)=>{
-  socket.on("boasvindas", (data)=>{
-      console.log(data);
-  }); 
+    socket.on("disconnect", ()=>{
+        console.log("X desconectou: " + socket.id);
+    });
+
+    socket.on("boasvindas", (data)=>{
+        console.log(data);
+    }); 
   
-  socket.on("palavra", (data)=>{
-      console.log(data);
-      socket.emit("resultado", data + " - GUIA DO PROGRAMADOR!");
-  })
+    socket.on("palavra", (data)=>{
+        console.log(data);
+        socket.emit("resultado", data + " - GUIA DO PROGRAMADOR!");
+    });
 });
 
 app.set("view engine", "ejs");
