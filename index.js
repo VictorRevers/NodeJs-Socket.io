@@ -1,5 +1,4 @@
 var express = require("express");
-const { Http2ServerRequest } = require("http2");
 var app = express();
 var http = require("http").createServer(app);
 var io = require("socket.io")(http);
