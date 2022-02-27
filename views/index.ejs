@@ -7,13 +7,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>TESTE!</h1>
+    <input type="text" id="palavra" oninput="enviar()">
+    <button onclick="enviar()">Enviar</button>
+    <hr>
+    <p id="resultado"></p>
 </body>
 
 <!--Conectando socket com backend-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
 <script>  
     var socket = io("http://localhost:3000");
+    socket.emit("boasvindas",{nome: "Victor"});
+
+    socket.on("resultado", (data)=>{
+        console.log(data);
+
+        var p = document.getElementById("resultado");
+        p.innerHTML = data;
+    });
+
+    function enviar(){
+        var input = document.getElementById('palavra');
+        console.log(input.value);
+        socket.emit("palavra", input.value);
+    }
 </script>
 <!--fim conexão-->
 </html>

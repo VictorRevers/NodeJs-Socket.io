@@ -5,9 +5,15 @@ var io = require("socket.io")(http);
 
 
 io.on("connection", (socket)=>{
-    console.log(socket);
-    console.log(socket.id);
-})
+  socket.on("boasvindas", (data)=>{
+      console.log(data);
+  }); 
+  
+  socket.on("palavra", (data)=>{
+      console.log(data);
+      socket.emit("resultado", data + " - GUIA DO PROGRAMADOR!");
+  })
+});
 
 app.set("view engine", "ejs");
 
